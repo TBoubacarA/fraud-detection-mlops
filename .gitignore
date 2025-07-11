@@ -1,0 +1,232 @@
+# =============================================================================
+# MLOps Fraud Detection Project - .gitignore
+# =============================================================================
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+mlops-env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# =============================================================================
+# DATA (IMPORTANT - Ne jamais committer les données sensibles)
+# =============================================================================
+
+# Données brutes (souvent volumineuses et sensibles)
+data/raw/*
+!data/raw/.gitkeep
+!data/raw/README.md
+
+# Données traitées (peuvent être régénérées)
+data/processed/*
+!data/processed/.gitkeep
+
+# Données externes
+data/external/*
+!data/external/.gitkeep
+
+# Datasets spécifiques
+*.csv
+*.xlsx
+*.json
+*.parquet
+*.pickle
+*.pkl
+
+# =============================================================================
+# MODÈLES ML (Gérer selon la taille)
+# =============================================================================
+
+# Modèles entraînés (souvent volumineux)
+models/*.pkl
+models/*.joblib
+models/*.h5
+models/*.pb
+models/*.onnx
+
+# Garder les scripts et configs
+!models/*.py
+!models/*.yaml
+!models/*.json
+!models/README.md
+!models/.gitkeep
+
+# =============================================================================
+# MLFLOW
+# =============================================================================
+
+# Artifacts MLflow (volumineux)
+mlruns/*/artifacts/
+mlartifacts/
+
+# Garder la structure
+!mlruns/.gitkeep
+!mlruns/README.md
+
+# Base de données MLflow locale
+mlflow.db
+mlflow.sqlite
+
+# =============================================================================
+# LOGS ET RAPPORTS
+# =============================================================================
+
+# Logs
+logs/*.log
+logs/*.out
+logs/*.err
+*.log
+
+# Rapports générés
+reports/*.html
+reports/*.pdf
+reports/*.png
+reports/*.jpg
+
+# Garder les templates
+!logs/.gitkeep
+!reports/.gitkeep
+!reports/templates/
+
+# =============================================================================
+# DOCKER ET DÉPLOIEMENT
+# =============================================================================
+
+# Volumes Docker
+postgres_data/
+mlflow_data/
+prometheus_data/
+grafana_data/
+
+# =============================================================================
+# CONFIGURATION SENSIBLE
+# =============================================================================
+
+# Variables d'environnement avec secrets
+.env
+.env.local
+.env.production
+.env.staging
+
+# Garder l'exemple
+!.env.example
+
+# Clés et certificats
+*.key
+*.pem
+*.crt
+*.cer
+*.p12
+*.pfx
+
+# =============================================================================
+# TEMPORAIRE ET CACHE
+# =============================================================================
+
+# Cache Python
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.cache
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Cache Jupyter
+.ipynb_checkpoints/
+
+# Cache système
+*.tmp
+*.temp
+.tmp/
+.temp/
+
+# =============================================================================
+# TESTS
+# =============================================================================
+
+# Résultats de tests
+test_results/
+.pytest_cache/
+coverage.xml
+*.cover
+.hypothesis/
+
+# =============================================================================
+# DOCUMENTATION
+# =============================================================================
+
+# Documentation générée
+docs/_build/
+docs/.doctrees/
+
+# =============================================================================
+# DÉPENDANCES
+# =============================================================================
+
+# Lock files (débat : certains préfèrent les garder)
+poetry.lock
+Pipfile.lock
+
+# =============================================================================
+# SPÉCIFIQUE AU PROJET
+# =============================================================================
+
+# Features importance temporaires
+feature_importance.csv
+
+# Modèles expérimentaux
+experiments/
+sandbox/
+
+# Données de test temporaires
+test_data/
+sample_data/
+
+# Scripts de nettoyage temporaires
+cleanup_*
+temp_*

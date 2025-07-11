@@ -1,0 +1,48 @@
+# MLflow et tracking
+mlflow>=2.8.0
+
+# Data processing
+pandas>=2.0.0
+numpy>=1.24.0
+scikit-learn>=1.3.0
+scipy>=1.10.0
+
+# Machine Learning
+xgboost>=2.0.0
+lightgbm>=4.0.0
+imbalanced-learn>=0.11.0
+optuna>=3.4.0
+
+# API et déploiement (versions compatibles)
+fastapi>=0.100.0
+uvicorn>=0.24.0
+pydantic>=1.10.0,<2.0.0
+
+# Base de données
+psycopg2-binary>=2.9.0
+sqlalchemy>=2.0.0
+
+# Monitoring (version compatible avec pydantic 1.x)
+evidently>=0.4.0
+
+# Explicabilité
+shap>=0.44.0
+
+# Visualisation
+matplotlib>=3.8.0
+seaborn>=0.13.0
+plotly>=5.17.0
+
+# Utilities
+python-dotenv>=1.0.0
+pyyaml>=6.0.0
+joblib>=1.3.0
+tqdm>=4.66.0
+loguru>=0.7.0
+
+# Tests
+pytest>=7.4.0
+pytest-cov>=4.1.0
+
+# Development
+black>=23.0.0
