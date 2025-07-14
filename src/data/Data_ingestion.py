@@ -18,11 +18,11 @@ class SimpleDataIngestion:
     """Version simplifiée de l'ingestion"""
     
     def __init__(self):
-        # Configuration MLflow (port 5001 selon votre docker-compose)
+        # Configuration MLflow (port 5001 selon docker-compose)
         self.mlflow_uri = "http://localhost:5001"
         mlflow.set_tracking_uri(self.mlflow_uri)
         
-        # Créer l'expérience
+        # Création de l'expérience
         self.experiment_name = "fraud_detection_pipeline"
         try:
             experiment = mlflow.get_experiment_by_name(self.experiment_name)
