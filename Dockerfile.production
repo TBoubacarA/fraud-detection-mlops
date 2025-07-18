@@ -1,0 +1,74 @@
+# Dockerfile optimisé pour la production
+FROM python:3.9-slim AS builder
+
+# Variables d'environnement
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+ENV PIP_NO_CACHE_DIR=1
+ENV PIP_DISABLE_PIP_VERSION_CHECK=1
+
+# Créer utilisateur non-root
+RUN groupadd -g 1000 appuser && \
+    useradd -r -u 1000 -g appuser appuser
+
+# Installer les dépendances système
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        build-essential \
+        libpq-dev \
+        gcc \
+        && rm -rf /var/lib/apt/lists/*
+
+# Installer les dépendances Python
+COPY requirements.txt .
+RUN pip install --user --no-cache-dir -r requirements.txt
+
+# Image finale
+FROM python:3.9-slim
+
+# Variables d'environnement
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+ENV PATH="/home/appuser/.local/bin:$PATH"
+ENV PYTHONPATH="/app:$PYTHONPATH"
+
+# Créer utilisateur non-root
+RUN groupadd -g 1000 appuser && \
+    useradd -r -u 1000 -g appuser appuser
+
+# Installer les dépendances système minimales
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        libpq5 \
+        curl \
+        && rm -rf /var/lib/apt/lists/* \
+        && apt-get clean
+
+# Copier les dépendances Python depuis le builder
+COPY --from=builder /root/.local /home/appuser/.local
+
+# Créer les répertoires de l'application
+RUN mkdir -p /app/data/raw /app/data/processed /app/models /app/logs && \
+    chown -R appuser:appuser /app
+
+# Définir le répertoire de travail
+WORKDIR /app
+
+# Copier le code source
+COPY --chown=appuser:appuser . .
+
+# Installer l'application
+RUN pip install --user -e .
+
+# Changer vers l'utilisateur non-root
+USER appuser
+
+# Exposer le port
+EXPOSE 8001
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:8001/health || exit 1
+
+# Commande par défaut
+CMD ["uvicorn", "src.api.scoring_api:app", "--host", "0.0.0.0", "--port", "8001", "--workers", "4"]
