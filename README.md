@@ -273,5 +273,3 @@ models:
 Ce projet est sous license MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
 
 ---
-
-** Développé par [Boubacar] dans le cadre d'un projet MLOps de production**
