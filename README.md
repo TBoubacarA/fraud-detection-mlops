@@ -1,5 +1,6 @@
 # 🏦 MLOps Fraud Detection Pipeline
 
+[![CI](https://github.com/TBoubacarA/fraud-detection-mlops/actions/workflows/simple-ci.yml/badge.svg)](https://github.com/TBoubacarA/fraud-detection-mlops/actions/workflows/simple-ci.yml)
 [![MLflow](https://img.shields.io/badge/MLflow-0052CC?style=for-the-badge&logo=mlflow&logoColor=white)](http://localhost:5001)
 [![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)](http://localhost:8001/docs)
 [![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
