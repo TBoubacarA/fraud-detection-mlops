@@ -492,35 +492,35 @@ async def predict_batch(
                     else:
                         prediction = model.predict(df)[0]
                         probability = model.predict_proba(df)[0, 1]
-                
-                # Déterminer le niveau de risque
-                if probability < 0.3:
-                    risk_level = "LOW"
-                    confidence = "HIGH"
-                elif probability < 0.7:
-                    risk_level = "MEDIUM" 
-                    confidence = "MEDIUM"
-                else:
-                    risk_level = "HIGH"
-                    confidence = "HIGH"
-                
-                if prediction == 1 and probability < 0.5:
-                    confidence = "LOW"
-                
-                results.append({
-                    "transaction_id": i,
-                    "prediction": {
-                        "is_fraud": bool(prediction),
-                        "fraud_probability": float(probability),
-                        "risk_level": risk_level,
-                        "confidence": confidence
-                    }
-                })
-            except Exception as e:
-                results.append({
-                    "transaction_id": i,
-                    "error": str(e)
-                })
+                    
+                    # Déterminer le niveau de risque
+                    if probability < 0.3:
+                        risk_level = "LOW"
+                        confidence = "HIGH"
+                    elif probability < 0.7:
+                        risk_level = "MEDIUM" 
+                        confidence = "MEDIUM"
+                    else:
+                        risk_level = "HIGH"
+                        confidence = "HIGH"
+                    
+                    if prediction == 1 and probability < 0.5:
+                        confidence = "LOW"
+                    
+                    results.append({
+                        "transaction_id": i,
+                        "prediction": {
+                            "is_fraud": bool(prediction),
+                            "fraud_probability": float(probability),
+                            "risk_level": risk_level,
+                            "confidence": confidence
+                        }
+                    })
+                except Exception as e:
+                    results.append({
+                        "transaction_id": i,
+                        "error": str(e)
+                    })
         
         fraud_count = sum(1 for r in results if "prediction" in r and r["prediction"]["is_fraud"])
         
