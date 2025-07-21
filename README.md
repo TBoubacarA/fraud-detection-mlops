@@ -96,7 +96,6 @@ fraud-detection-mlops/
 │   ├── models/                 # Entraînement ML
 │   ├── api/                    # API FastAPI
 │   └── monitoring/             # Surveillance
-├── 📓 notebooks/               # Jupyter notebooks
 ├── 🧪 tests/                   # Tests automatisés
 ├── ⚙️ configs/                 # Configuration
 ├── 🐳 docker/                  # Dockerfiles
